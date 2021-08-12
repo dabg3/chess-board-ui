@@ -1,9 +1,5 @@
-import { Injectable } from '@angular/core';
 import { Square } from './square';
 
-@Injectable({
-  providedIn: 'root', 
-})
 export class SquareMappingService {
 
   constructor() { }

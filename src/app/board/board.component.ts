@@ -9,15 +9,16 @@ import { SquareMappingService } from './square-mapping/square-mapping.service';
 })
 export class BoardComponent implements OnInit {
 
-	constructor(private _mappingService: SquareMappingService) { }
+	constructor(private _mappingService: SquareMappingService) {
+		this.squares = this._mappingService.sortSquares();
+	}
 
 	squares: IterableIterator<Square>;
 
 	ngOnInit(): void {
-		this.squares = this._mappingService.sortSquares();
 	}
 
-	retrieveColor(square: Square) : string{
+	retrieveColor(square: Square): string {
 		return this.isSquareWhite(square.naturalIndexes.rank - 1, square.naturalIndexes.file - 1) ?
 			"white" : "black";
 	}
@@ -29,7 +30,7 @@ export class BoardComponent implements OnInit {
 	}
 
 	onSquareClick(square: Square, squareSvg?: any) {
-		console.log(square);	
+		console.log(square);
 	}
 
 }
