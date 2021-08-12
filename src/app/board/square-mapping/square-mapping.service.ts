@@ -5,24 +5,47 @@ export class SquareMappingService {
 
 	constructor() { }
 
-	public sortSquares(mapping: Mapping): { name: string, rank: number, file: number }[] {
-		const sortedSqs: { name: string, rank: number, file: number }[] = new Array(64);
+	public sortSquares(mapping: Mapping): Square[] {
 
-		const squares: IterableIterator<Square> = Square.getAll();
-		for (const square of squares) {
-			sortedSqs[this.calculateSquareIndex(square, mapping)] = {
-				name: square.toString(),
-				rank: mapping.rankIndexes[square.naturalIndexes.rank - 1],
-				file: mapping.fileIndexes[square.naturalIndexes.file - 1]
-			}
+		const sortedSqs: Square[] = new Array(64);
+
+		const refSquares: Square[] = ReferenceSquaresGenerator.generate();
+		for (const square of refSquares) {
+			sortedSqs[this.calculateSquareIndex(square, mapping)] = new Square(
+				square.toString(),
+				mapping.rankIndexes[square.rank],
+				mapping.fileIndexes[square.file]
+			)
 		}
 
 		return sortedSqs;
 	}
 
 	private calculateSquareIndex(square: Square, mapping: Mapping): number {
-		const fileIndex = square.naturalIndexes.file - 1;
-		const rankIndex = square.naturalIndexes.rank - 1;
+		const fileIndex = square.file;
+		const rankIndex = square.rank;
 		return mapping.ordering!(rankIndex, fileIndex);
 	}
+}
+
+class ReferenceSquaresGenerator {
+
+	static generate(): Square[] {
+		const refSquares: Square[] = new Array<Square>();
+
+		for(let file = 0; file < 8; file++) {
+			for(let rank = 0; rank < 8; rank++) {
+				const squareName = this.retrieveFileLetter(file) + (rank + 1);
+				console.log(squareName, rank, file);
+				refSquares.push(new Square(squareName, rank, file));
+			}
+		}
+		console.log(refSquares.length)
+		return refSquares;
+	}
+
+	private static retrieveFileLetter(file: number): string {
+		return String.fromCharCode('A'.charCodeAt(0) + file);
+	}
+
 }

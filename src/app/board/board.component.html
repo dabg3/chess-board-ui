@@ -1,10 +1,8 @@
 <svg-container containerId='chess-board' [height]='800'>
-	<!-- ngTemplate or ngContainer to surround svg-rect while looping, can it be better? 
-	Currently getting ERROR TypeError: this._rect is undefined -->
-	<svg-rect *ngFor="let square of squares; index as sqIndex" 
+	<svg-rect *ngFor="let square of squares;" 
 	[height]='100' [width]='100' 
 	[x]='square.file * 100' 
 	[y]='square.rank * 100'
 	color='{{retrieveColor(square.rank, square.file)}}'
-	(clickEvent)="onSquareClick(square.name)"></svg-rect>
+	(clickEvent)="onSquareClick(square)"></svg-rect>
 </svg-container>
