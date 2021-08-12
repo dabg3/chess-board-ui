@@ -3,8 +3,8 @@
 	Currently getting ERROR TypeError: this._rect is undefined -->
 	<svg-rect *ngFor="let square of squares; index as sqIndex" 
 	[height]='100' [width]='100' 
-	[x]='(square.naturalIndexes.file - 1) * 100' 
-	[y]='(square.naturalIndexes.rank - 1) * 100'
-	color='{{retrieveColor(square)}}'
-	(clickEvent)="onSquareClick(square)"></svg-rect>
+	[x]='square.file * 100' 
+	[y]='square.rank * 100'
+	color='{{retrieveColor(square.rank, square.file)}}'
+	(clickEvent)="onSquareClick(square.name)"></svg-rect>
 </svg-container>

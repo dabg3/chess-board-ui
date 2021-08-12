@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Mapping } from './square-mapping/mapping';
 import { Square } from './square-mapping/square';
 import { SquareMappingService } from './square-mapping/square-mapping.service';
 
@@ -9,18 +10,21 @@ import { SquareMappingService } from './square-mapping/square-mapping.service';
 })
 export class BoardComponent implements OnInit {
 
-	constructor(private _mappingService: SquareMappingService) {
-		this.squares = this._mappingService.sortSquares();
-	}
+	squares: {
+		name: string;
+		file: number;
+		rank: number;
+	}[];
 
-	squares: IterableIterator<Square>;
+	constructor(private _mappingService: SquareMappingService) {
+		this.squares = this._mappingService.sortSquares(Mapping.LER_BEF);
+	}
 
 	ngOnInit(): void {
 	}
 
-	retrieveColor(square: Square): string {
-		return this.isSquareWhite(square.naturalIndexes.rank - 1, square.naturalIndexes.file - 1) ?
-			"white" : "black";
+	retrieveColor(rank: number, file: number): string {
+		return this.isSquareWhite(rank, file) ? "white" : "black";
 	}
 
 	private isSquareWhite(rank: number, file: number): boolean {
@@ -29,8 +33,8 @@ export class BoardComponent implements OnInit {
 		return rankAndFileEven || rankAndFileOdd;
 	}
 
-	onSquareClick(square: Square, squareSvg?: any) {
-		console.log(square);
+	onSquareClick(squareName: string, squareSvg?: any) {
+		console.log(squareName);
 	}
 
 }
