@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { BoardService } from './board.service';
+import { SquareMappingService } from './square-mapping.service';
 
-describe('BoardService', () => {
-  let service: BoardService;
+describe('SquareMappingService', () => {
+  let service: SquareMappingService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(BoardService);
+    service = TestBed.inject(SquareMappingService);
   });
 
   it('should be created', () => {
