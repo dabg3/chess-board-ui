@@ -12,7 +12,7 @@ export class SquareMappingService {
 		const refSquares: Square[] = ReferenceSquaresGenerator.generate();
 		for (const square of refSquares) {
 			sortedSqs[this.calculateSquareIndex(square, mapping)] = new Square(
-				square.toString(),
+				square.name,
 				mapping.rankIndexes[square.rank],
 				mapping.fileIndexes[square.file]
 			)
@@ -22,9 +22,7 @@ export class SquareMappingService {
 	}
 
 	private calculateSquareIndex(square: Square, mapping: Mapping): number {
-		const fileIndex = square.file;
-		const rankIndex = square.rank;
-		return mapping.ordering!(rankIndex, fileIndex);
+		return mapping.ordering!(square.rank, square.file);
 	}
 }
 
@@ -33,14 +31,14 @@ class ReferenceSquaresGenerator {
 	static generate(): Square[] {
 		const refSquares: Square[] = new Array<Square>();
 
-		for(let file = 0; file < 8; file++) {
-			for(let rank = 0; rank < 8; rank++) {
-				const squareName = this.retrieveFileLetter(file) + (rank + 1);
-				console.log(squareName, rank, file);
+		for (let file = 0; file < 8; file++) {
+			const squareLetter: string = this.retrieveFileLetter(file);
+			for (let rank = 0; rank < 8; rank++) {
+				const squareName: string = "" + squareLetter + (rank + 1);
 				refSquares.push(new Square(squareName, rank, file));
 			}
 		}
-		console.log(refSquares.length)
+
 		return refSquares;
 	}
 
