@@ -17,6 +17,11 @@ export class BoardComponent implements OnInit {
 
 	squares: Square[];
 
+	private move: {
+		from: Square;
+		to?: Square;
+	}
+
 	constructor(
 		private _mappingService: SquareMappingService,
 		private _pieceService: PositionService) {
@@ -24,7 +29,7 @@ export class BoardComponent implements OnInit {
 
 	ngOnInit(): void {
 		//BER_LEF for white
-		this.squares = this._mappingService.sortSquares(Mapping.LER_BEF);
+		this.squares = this._mappingService.sortSquares(Mapping.BER_LEF);
 		for (const square of this.squares) {
 			const piece: {type: Piece, side: Side} | undefined = this._pieceService.getPieceOn(square.name);
 			if (piece) {
@@ -34,7 +39,21 @@ export class BoardComponent implements OnInit {
 	}
 
 	onSquareClick(square: Square) {
-		console.log(square.name, square.piece);
+		if (this.isNewMove() && square.piece) {
+			this.move = {from: square}
+			return;
+		}
+		if (this.move.from == square) {
+			return;
+		}
+		this.move.to = square;
+
+		this.move.to.piece = this.move.from.piece;
+		this.move.from.piece = undefined;
+	}
+
+	private isNewMove(): boolean {
+		return !this.move || this.move.from != null && this.move.to != null;
 	}
 
 }
