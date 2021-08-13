@@ -3,19 +3,19 @@ import { Square } from './square';
 
 export class SquareMappingService {
 
+	private referenceSquares: Square[] = ReferenceSquaresGenerator.generate();
+
 	constructor() { }
 
 	public sortSquares(mapping: Mapping): Square[] {
 
-		const sortedSqs: Square[] = new Array(64);
+		const sortedSqs: Square[] = new Array<Square>(64);
 
-		const refSquares: Square[] = ReferenceSquaresGenerator.generate();
-		for (const square of refSquares) {
+		for (const square of this.referenceSquares) {
 			sortedSqs[this.calculateSquareIndex(square, mapping)] = new Square(
 				square.name,
 				mapping.rankIndexes[square.rank],
-				mapping.fileIndexes[square.file]
-			)
+				mapping.fileIndexes[square.file]);
 		}
 
 		return sortedSqs;
@@ -34,7 +34,7 @@ class ReferenceSquaresGenerator {
 		for (let file = 0; file < 8; file++) {
 			const squareLetter: string = this.retrieveFileLetter(file);
 			for (let rank = 0; rank < 8; rank++) {
-				const squareName: string = "" + squareLetter + (rank + 1);
+				const squareName: string = squareLetter + (rank + 1);
 				refSquares.push(new Square(squareName, rank, file));
 			}
 		}

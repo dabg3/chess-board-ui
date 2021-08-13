@@ -11,7 +11,7 @@ import { BoardModule } from './board/board.module';
 	],
 	imports: [
 		BrowserModule,
-		BoardModule
+		BoardModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent]
