@@ -13,6 +13,7 @@ import { SquareMappingService } from './square-mapping/square-mapping.service';
 })
 export class BoardComponent implements OnInit {
 
+
 	squareSizePx: number = 100;
 
 	squares: Square[];
@@ -55,5 +56,5 @@ export class BoardComponent implements OnInit {
 	private isNewMove(): boolean {
 		return !this.move || (this.move.from != null && this.move.to != null);
 	}
-	
+
 }

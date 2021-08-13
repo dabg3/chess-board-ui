@@ -1,4 +1,4 @@
-<svg-container  containerId='chess-board' [height]='squareSizePx * 8' width='squareSizePx * 8'>
+<!-- <svg-container  containerId='chess-board' [height]='squareSizePx * 8' width='squareSizePx * 8'>
 	<ng-container *ngFor="let square of squares; index as sqIndex">
 		<svg-rect [height]='squareSizePx' [width]='squareSizePx' 
 			[x]='square.file * squareSizePx' 
@@ -14,5 +14,19 @@
 			[size]="squareSizePx / 2"
 			(clickEvent)='onSquareClick(square)'>
 		</svg-text>
+	</ng-container>
+</svg-container> -->
+
+<svg-container containerId="chess-board" [height]='squareSizePx * 8' [viewBox]='[0,0,squareSizePx*8,squareSizePx*8]'>
+	<ng-container *ngFor='let square of squares'>
+		<svg-rect [height]='squareSizePx' [width]='squareSizePx' 
+			[x]='squareSizePx * square.file' [y]='squareSizePx * square.rank'
+			color='{{square | squareColor}}'>
+		</svg-rect>
+		<!-- <app-piece *ngIf='square.piece' [square]='square'></app-piece> -->
+		<svg-image *ngIf='square.piece' imageUrl="../../assets/Chess_bdt45.svg" 
+			[x]='squareSizePx * square.file' [y]='squareSizePx * square.rank'>
+		</svg-image>
+		<!-- <svg-image *ngIf='square.piece' app-piece [square]='square' [squareSizePx]='squareSizePx'></svg-image> -->
 	</ng-container>
 </svg-container>

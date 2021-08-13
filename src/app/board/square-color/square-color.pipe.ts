@@ -7,7 +7,7 @@ import { Square } from '../square-mapping/square';
 export class SquareColorPipe implements PipeTransform {
 
 	transform(value: Square, ...args: unknown[]): string {
-		return this.isSquareWhite(value.rank, value.file) ? "white" : "black";
+		return this.isSquareWhite(value.rank, value.file) ? "#ffffdd" : "#86a666";
 	}
 
 	private isSquareWhite(rank: number, file: number): boolean {
