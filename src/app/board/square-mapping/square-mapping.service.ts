@@ -22,7 +22,9 @@ export class SquareMappingService {
 	}
 
 	private calculateSquareIndex(square: Square, mapping: Mapping): number {
-		return mapping.ordering!(square.rank, square.file);
+		const rankIndex = mapping.rankIndexes[square.rank];
+		const fileIndex = mapping.fileIndexes[square.file];
+		return mapping.ordering!(rankIndex, fileIndex);
 	}
 }
 
