@@ -1,9 +1,9 @@
-<svg-container containerId='chess-board' [height]='800'>
-	<svg-rect *ngFor="let square of squares;" 
+<svg-container  containerId='chess-board' [height]='800'>
+	<svg-rect *ngFor="let square of squares; index as sqIndex" 
 	[height]='100' [width]='100' 
 	[x]='square.file * 100' 
 	[y]='square.rank * 100'
-	color='{{retrieveColor(square.rank, square.file)}}'
+	color='{{square | squareColor}}'
 	(clickEvent)="onSquareClick(square)">
 	</svg-rect>
 </svg-container>
