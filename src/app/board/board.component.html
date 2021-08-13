@@ -1,9 +1,18 @@
-<svg-container  containerId='chess-board' [height]='800'>
-	<svg-rect *ngFor="let square of squares; index as sqIndex" 
-	[height]='100' [width]='100' 
-	[x]='square.file * 100' 
-	[y]='square.rank * 100'
-	color='{{square | squareColor}}'
-	(clickEvent)="onSquareClick(square)">
-	</svg-rect>
+<svg-container  containerId='chess-board' [height]='squareSizePx * 8' width='squareSizePx * 8'>
+	<ng-container *ngFor="let square of squares; index as sqIndex">
+		<svg-rect [height]='squareSizePx' [width]='squareSizePx' 
+			[x]='square.file * squareSizePx' 
+			[y]='square.rank * squareSizePx'
+			color='{{square | squareColor}}'
+			(clickEvent)='onSquareClick(square)'>
+		</svg-rect>
+		<svg-text *ngIf="square.piece"
+			[text]="square.piece.type" 
+			[x]="square.file * squareSizePx + squareSizePx / 4" 
+			[y]="square.rank * squareSizePx + squareSizePx / 4" 
+			color="red"
+			[size]="squareSizePx / 2"
+			(clickEvent)='onSquareClick(square)'>
+		</svg-text>
+	</ng-container>
 </svg-container>
