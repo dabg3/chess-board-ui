@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Mapping } from './square-mapping/mapping';
-import { SquareMappingService } from './square-mapping/square-mapping.service';
-import { Square } from './square-mapping/square';
-import { PositionService } from './position/position.service';
 import { Piece } from './position/piece';
+import { PositionService } from './position/position.service';
 import { Side } from './side';
+import { Mapping } from './square-mapping/mapping';
+import { Square } from './square-mapping/square';
+import { SquareMappingService } from './square-mapping/square-mapping.service';
 
 @Component({
 	selector: 'app-board',
@@ -24,14 +24,14 @@ export class BoardComponent implements OnInit {
 
 	constructor(
 		private _mappingService: SquareMappingService,
-		private _pieceService: PositionService) {
+		private _positionService: PositionService) {
 	}
 
 	ngOnInit(): void {
 		//BER_LEF for white
 		this.squares = this._mappingService.sortSquares(Mapping.BER_LEF);
 		for (const square of this.squares) {
-			const piece: {type: Piece, side: Side} | undefined = this._pieceService.getPieceOn(square.name);
+			const piece: { type: Piece, side: Side } | undefined = this._positionService.getPieceOn(square.name);
 			if (piece) {
 				square.piece = piece;
 			}
@@ -40,7 +40,7 @@ export class BoardComponent implements OnInit {
 
 	onSquareClick(square: Square) {
 		if (this.isNewMove() && square.piece) {
-			this.move = {from: square}
+			this.move = { from: square }
 			return;
 		}
 		if (this.move.from == square) {
@@ -53,7 +53,7 @@ export class BoardComponent implements OnInit {
 	}
 
 	private isNewMove(): boolean {
-		return !this.move || this.move.from != null && this.move.to != null;
+		return !this.move || (this.move.from != null && this.move.to != null);
 	}
-
+	
 }
