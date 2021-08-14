@@ -23,10 +23,9 @@
 			[x]='squareSizePx * square.file' [y]='squareSizePx * square.rank'
 			color='{{square | squareColor}}'>
 		</svg-rect>
-		<!-- <app-piece *ngIf='square.piece' [square]='square'></app-piece> -->
-		<svg-image *ngIf='square.piece' imageUrl="../../assets/Chess_bdt45.svg" 
+		<!-- <svg-image *ngIf='square.piece' imageUrl="../../assets/Chess_blt44.svg" 
 			[x]='squareSizePx * square.file' [y]='squareSizePx * square.rank'>
-		</svg-image>
-		<!-- <svg-image *ngIf='square.piece' app-piece [square]='square' [squareSizePx]='squareSizePx'></svg-image> -->
+		</svg-image> -->
+		<app-piece *ngIf='square.piece' [square]='square' [squareSizePx]='squareSizePx'></app-piece>
 	</ng-container>
 </svg-container>

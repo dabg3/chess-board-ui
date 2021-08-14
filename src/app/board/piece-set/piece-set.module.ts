@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PieceComponent } from './piece/piece.component';
 import { NgxSvgModule } from 'ngx-svg';
+import { PieceComponent } from './piece/piece.component';
 
 
 
