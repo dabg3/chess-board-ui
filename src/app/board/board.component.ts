@@ -39,7 +39,7 @@ export class BoardComponent implements OnInit {
 		}
 	}
 
-	onSquareClick(square: Square) {
+	onSquareClick(square: Square): void {
 		if (this.isNewMove() && square.piece) {
 			this.move = { from: square }
 			return;

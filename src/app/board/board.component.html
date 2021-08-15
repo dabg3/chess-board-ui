@@ -18,14 +18,8 @@
 </svg-container> -->
 
 <svg-container containerId="chess-board" [height]='squareSizePx * 8' [viewBox]='[0,0,squareSizePx*8,squareSizePx*8]'>
-	<ng-container *ngFor='let square of squares'>
-		<svg-rect [height]='squareSizePx' [width]='squareSizePx' 
+		<svg-rect *ngFor='let square of squares' [height]='squareSizePx' [width]='squareSizePx' 
 			[x]='squareSizePx * square.file' [y]='squareSizePx * square.rank'
 			color='{{square | squareColor}}'>
 		</svg-rect>
-		<!-- <svg-image *ngIf='square.piece' imageUrl="../../assets/Chess_blt44.svg" 
-			[x]='squareSizePx * square.file' [y]='squareSizePx * square.rank'>
-		</svg-image> -->
-		<app-piece *ngIf='square.piece' [square]='square' [squareSizePx]='squareSizePx'></app-piece>
-	</ng-container>
 </svg-container>
