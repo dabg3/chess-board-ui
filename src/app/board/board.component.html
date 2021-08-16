@@ -24,10 +24,11 @@
 			color='{{square | squareColor}}' 
 			(clickEvent)='onSquareClick(square)'>
 		</svg-rect>
-		<svg-image *ngIf='square.piece' [imageUrl]='"../../assets/Chess_bdt45.svg"'
+		<!-- <svg-image *ngIf='square.piece' [imageUrl]='"../../assets/Chess_bdt45.svg"'
 			[height]='squareSizePx' [width]='squareSizePx' 
 			[x]='squareSizePx * square.file' [y]='squareSizePx * square.rank' 
 			(clickEvent)='onSquareClick(square)'>
-		</svg-image>
+		</svg-image> -->
+		<svg-image appPiece *ngIf='square.piece' [squareSizePx]='squareSizePx' [square]='square'></svg-image>
 	</ng-container>
 </svg-container>
