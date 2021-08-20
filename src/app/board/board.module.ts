@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NgxSvgModule } from 'ngx-svg';
 import { BoardComponent } from './board.component';
-import { PieceSetModule } from './piece-set/piece-set.module';
 import { PositionService } from './position/position.service';
 import { SquareColorPipe } from './square-color/square-color.pipe';
 import { SquareMappingService } from './square-mapping/square-mapping.service';
@@ -10,9 +8,7 @@ import { SquareMappingService } from './square-mapping/square-mapping.service';
 @NgModule({
 	declarations: [BoardComponent, SquareColorPipe],
 	imports: [
-		CommonModule,
-		NgxSvgModule,
-		PieceSetModule
+		CommonModule
 	],
 	exports: [
 		BoardComponent
