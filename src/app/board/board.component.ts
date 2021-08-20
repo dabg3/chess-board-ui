@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, OnInit } from '@angular/core';
+import { SVG, Svg, Rect, List, Element } from '@svgdotjs/svg.js';
 import { Piece } from './position/piece';
 import { PositionService } from './position/position.service';
 import { Side } from './side';
+import { SquareColorPipe } from './square-color/square-color.pipe';
 import { Mapping } from './square-mapping/mapping';
 import { Square } from './square-mapping/square';
 import { SquareMappingService } from './square-mapping/square-mapping.service';
+
 
 @Component({
 	selector: 'app-board',
 	templateUrl: './board.component.html',
 	styleUrls: ['./board.component.css']
 })
-export class BoardComponent implements OnInit {
+export class BoardComponent implements OnInit, AfterViewInit, AfterViewChecked {
+
 
 
 	squareSizePx: number = 100;
@@ -39,9 +43,37 @@ export class BoardComponent implements OnInit {
 		}
 	}
 
+	ngAfterViewInit(): void {
+		const svgContainer: Element = SVG("svg");
+		const svgSquares: List<Element> = svgContainer.find(".square");
+		const svgPieces: List<Element> = svgContainer.find(".piece");
+		const squareColorPipe: SquareColorPipe = new SquareColorPipe();
+
+		let sqIndex = 0;
+		let pieceIndex = 0;
+		for (let svgSq of svgSquares) {
+			const square = this.squares[sqIndex++];
+			const x = 12.5 * square.file + '%';
+			const y = 12.5 * square.rank + '%'
+			svgSq.move(x, y)
+				.fill(squareColorPipe.transform(square))
+			if (square.piece) {
+				svgPieces[pieceIndex++].move(x, y);
+			}
+		}
+	}
+
+	ngAfterViewChecked(): void {
+		//update pieces positions on move
+	}
+
 	onSquareClick(square: Square): void {
-		if (this.isNewMove() && square.piece) {
-			this.move = { from: square }
+		console.log(square);
+
+		if (this.isNewMove()) {
+			if (square.piece) {
+				this.move = { from: square }
+			}
 			return;
 		}
 		if (this.move.from == square) {

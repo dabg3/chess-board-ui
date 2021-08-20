@@ -1,0 +1,14 @@
+<svg #svgcontainer xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:svgjs="http://svgjs.dev/svgjs" 
+	width="800" height="800"
+	viewBox="0 0 800 800">
+	<g *ngFor="let square of squares" (click)='onSquareClick(square)'>
+		<rect height="12.5%" width="12.5%"
+			class="square">
+		</rect>
+		<image *ngIf='square.piece' href="../../assets/Chess_bdt45.svg" 
+			height="12.5%" width="12.5%"
+			class="piece">
+		</image>
+	</g>
+</svg>
