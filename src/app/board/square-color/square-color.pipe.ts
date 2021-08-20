@@ -11,9 +11,7 @@ export class SquareColorPipe implements PipeTransform {
 	}
 
 	private isSquareWhite(rank: number, file: number): boolean {
-		const rankAndFileEven: boolean = rank % 2 == 0 && file % 2 == 0;
-		const rankAndFileOdd: boolean = rank % 2 == 1 && file % 2 == 1;
-		return rankAndFileEven || rankAndFileOdd;
+		return rank % 2 == file % 2;
 	}
 
 }

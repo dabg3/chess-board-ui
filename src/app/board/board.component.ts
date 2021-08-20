@@ -17,8 +17,7 @@ import { SquareMappingService } from './square-mapping/square-mapping.service';
 export class BoardComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
 
-
-	squareSizePx: number = 100;
+	private _svgContainer: Element;
 
 	squares: Square[];
 
@@ -44,9 +43,9 @@ export class BoardComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	}
 
 	ngAfterViewInit(): void {
-		const svgContainer: Element = SVG("svg");
-		const svgSquares: List<Element> = svgContainer.find(".square");
-		const svgPieces: List<Element> = svgContainer.find(".piece");
+		this._svgContainer = SVG("svg");
+		const svgSquares: List<Element> = this._svgContainer.find(".square");
+		const svgPieces: List<Element> = this._svgContainer.find(".piece");
 		const squareColorPipe: SquareColorPipe = new SquareColorPipe();
 
 		let sqIndex = 0;
@@ -64,7 +63,17 @@ export class BoardComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	}
 
 	ngAfterViewChecked(): void {
-		//update pieces positions on move
+		const svgPieces: List<Element> = this._svgContainer.find(".piece");
+
+		let pieceIndex = 0;
+		for (let square of this.squares) {
+			if (!square.piece) {
+				continue;
+			}
+			const x = 12.5 * square.file + '%';
+			const y = 12.5 * square.rank + '%'
+			svgPieces[pieceIndex++].move(x, y);
+		}
 	}
 
 	onSquareClick(square: Square): void {
