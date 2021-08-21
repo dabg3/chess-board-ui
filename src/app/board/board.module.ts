@@ -4,9 +4,14 @@ import { BoardComponent } from './board.component';
 import { PositionService } from './position/position.service';
 import { SquareColorPipe } from './square-color/square-color.pipe';
 import { SquareMappingService } from './square-mapping/square-mapping.service';
+import { PieceDirective } from './position/piece.directive';
 
 @NgModule({
-	declarations: [BoardComponent, SquareColorPipe],
+	declarations: [
+		BoardComponent,
+		SquareColorPipe,
+		PieceDirective
+	],
 	imports: [
 		CommonModule
 	],
@@ -14,7 +19,8 @@ import { SquareMappingService } from './square-mapping/square-mapping.service';
 		BoardComponent
 	],
 	providers: [
-		SquareMappingService, PositionService
+		SquareMappingService, 
+		PositionService, 
 	]
 })
 export class BoardModule { }

@@ -2,7 +2,7 @@ import { AfterViewChecked, AfterViewInit, Component, OnInit } from '@angular/cor
 import { SVG, Svg, Rect, List, Element } from '@svgdotjs/svg.js';
 import { Piece } from './position/piece';
 import { PositionService } from './position/position.service';
-import { Side } from './side';
+import { Side } from './position/side';
 import { SquareColorPipe } from './square-color/square-color.pipe';
 import { Mapping } from './square-mapping/mapping';
 import { Square } from './square-mapping/square';
@@ -63,6 +63,10 @@ export class BoardComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	}
 
 	ngAfterViewChecked(): void {
+		// if (this.isMoveNotComplete()) {
+		// 	return;
+		// }
+
 		const svgPieces: List<Element> = this._svgContainer.find(".piece");
 
 		let pieceIndex = 0;
@@ -74,6 +78,11 @@ export class BoardComponent implements OnInit, AfterViewInit, AfterViewChecked {
 			const y = 12.5 * square.rank + '%'
 			svgPieces[pieceIndex++].move(x, y);
 		}
+	}
+
+	private isMoveNotComplete() {
+		// not works!
+		return !this.move || ((this.move.from == null) == (this.move.to == null));
 	}
 
 	onSquareClick(square: Square): void {

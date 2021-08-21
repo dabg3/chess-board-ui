@@ -6,7 +6,7 @@
 		<rect height="12.5%" width="12.5%"
 			class="square">
 		</rect>
-		<image *ngIf='square.piece' href="../../assets/Chess_bdt45.svg" 
+		<image [appPiece]='square.piece' *ngIf='square.piece'  
 			height="12.5%" width="12.5%"
 			class="piece">
 		</image>

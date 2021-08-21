@@ -1,5 +1,5 @@
 import { Piece } from "../position/piece";
-import { Side } from "../side";
+import { Side } from "../position/side";
 
 export class Square {
 
