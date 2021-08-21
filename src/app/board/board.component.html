@@ -1,25 +1,14 @@
-<!-- <svg-container  containerId='chess-board' [height]='squareSizePx * 8' width='squareSizePx * 8'>
-	<ng-container *ngFor="let square of squares; index as sqIndex">
-		<svg-rect [height]='squareSizePx' [width]='squareSizePx' 
-			[x]='square.file * squareSizePx' 
-			[y]='square.rank * squareSizePx'
-			color='{{square | squareColor}}'
-			(clickEvent)='onSquareClick(square)'>
-		</svg-rect>
-		<svg-text *ngIf="square.piece"
-			[text]="square.piece.type" 
-			[x]="square.file * squareSizePx + squareSizePx / 4" 
-			[y]="square.rank * squareSizePx + squareSizePx / 4" 
-			color="red"
-			[size]="squareSizePx / 2"
-			(clickEvent)='onSquareClick(square)'>
-		</svg-text>
-	</ng-container>
-</svg-container> -->
-
-<svg-container containerId="chess-board" [height]='squareSizePx * 8' [viewBox]='[0,0,squareSizePx*8,squareSizePx*8]'>
-		<svg-rect *ngFor='let square of squares' [height]='squareSizePx' [width]='squareSizePx' 
-			[x]='squareSizePx * square.file' [y]='squareSizePx * square.rank'
-			color='{{square | squareColor}}'>
-		</svg-rect>
-</svg-container>
+<svg #svgcontainer xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:svgjs="http://svgjs.dev/svgjs" 
+	width="800" height="800"
+	viewBox="0 0 800 800">
+	<g *ngFor="let square of squares" (click)='onSquareClick(square)'>
+		<rect height="12.5%" width="12.5%"
+			class="square">
+		</rect>
+		<image [appPiece]='square.piece' *ngIf='square.piece'  
+			height="12.5%" width="12.5%"
+			class="piece">
+		</image>
+	</g>
+</svg>

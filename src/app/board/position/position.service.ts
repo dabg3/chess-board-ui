@@ -1,4 +1,4 @@
-import { Side } from "../side";
+import { Side } from "./side";
 import { Piece } from "./piece";
 
 export class PositionService {
@@ -9,6 +9,7 @@ export class PositionService {
 		this.pieces.set("A1", {type: Piece.ROOK, side: Side.WHITE});
 		this.pieces.set("D1", {type: Piece.QUEEN, side: Side.WHITE});
 		this.pieces.set("B2", {type: Piece.BISHOP, side: Side.WHITE});
+		this.pieces.set("D8", {type: Piece.QUEEN, side: Side.BLACK});
 
 	}
 
