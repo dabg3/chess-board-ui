@@ -32,8 +32,7 @@ export class BoardComponent implements OnInit, AfterViewInit, AfterViewChecked {
 	}
 
 	ngOnInit(): void {
-		//BER_LEF for white view
-		this.squares = this._mappingService.sortSquares(Mapping.BER_LEF);
+		this.squares = this._mappingService.sortSquares(Mapping.WHITE_VIEW);
 		for (const square of this.squares) {
 			const piece: { type: Piece, side: Side } | undefined = this._positionService.getPieceOn(square.name);
 			if (piece) {
