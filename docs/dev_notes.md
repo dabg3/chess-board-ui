@@ -10,7 +10,9 @@ List of components:
 
 **Task 1**: ~~recognize name of the square clicked (i.e A1, C7..)~~<br>
 **Task 2**: ~~implement moves~~<br>
-**Task 3**: render piece per square<br>
+**Task 3**: ~~render piece per square~~<br>
+**Task 4**: communicate via socket<br>
+**Task 5**: implement uci for communication<br>
 
 ## Branches
 piece-rendering-board -> as it should work!<br>
