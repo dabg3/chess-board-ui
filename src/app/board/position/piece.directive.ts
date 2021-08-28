@@ -1,9 +1,9 @@
-import { AfterContentChecked, AfterContentInit, AfterViewInit, Directive, ElementRef, Inject, Input, OnInit } from '@angular/core';
-import { SVG, Image } from '@svgdotjs/svg.js';
+import { AfterContentChecked, Directive, ElementRef, Inject, Input } from '@angular/core';
+import { Image, SVG } from '@svgdotjs/svg.js';
+import { DEFAULT_IMAGE_PROVIDER } from './default-image-provider.service';
 import { Piece } from './piece';
-import { DefaultImageProvider, DEFAULT_IMAGE_PROVIDER } from './default-image-provider.service';
-import { Side } from './side';
 import { PieceImageService } from './piece-image-service';
+import { Side } from './side';
 
 @Directive({
 	selector: '[appPiece]'
